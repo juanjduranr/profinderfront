@@ -25,3 +25,7 @@ code {
   color: black;
   font-size: 25px;
 }
+
+.clickable {
+  cursor: pointer;
+}

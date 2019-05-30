@@ -1,23 +1,28 @@
 import React, { Component } from "react";
 import { getCompanies } from "../services/companyService";
+import { getCompanyTypes } from "../services/companyTypeService";
 import Pagination from "./common/pagination";
 import SearchBox from "./common/searchBox";
-import ListGroup from "./listGroup";
+import ListGroup from "./common/listGroup";
 import CompanyCard from "./companyCard";
 import _ from "lodash";
 
 class Companies extends Component {
   state = {
     companies: [],
+    companyTypes: [],
     currentPage: 1,
     pageSize: 3,
     searchQuery: "",
-    selectedType: null
+    selectedCompanyType: null
   };
 
   async componentDidMount() {
     const { data: companies } = await getCompanies();
-    this.setState({ companies });
+    const { data: companyTypesData } = await getCompanyTypes();
+    const companyTypes = [{ id: 0, name: "All" }, ...companyTypesData];
+
+    this.setState({ companies, companyTypes });
   }
 
   paginate(items, pageNumber, pageSize) {
@@ -33,14 +38,26 @@ class Companies extends Component {
   };
 
   handleSearch = query => {
-    this.setState({ searchQuery: query, selectedType: null, currentPage: 1 });
+    this.setState({
+      searchQuery: query,
+      selectedCompanyType: null,
+      currentPage: 1
+    });
+  };
+
+  handleCompanyTypeSelect = companyType => {
+    this.setState({
+      selectedCompanyType: companyType,
+      searchQuery: "",
+      currentPage: 1
+    });
   };
 
   getPagedData = () => {
     const {
       pageSize,
       currentPage,
-      selectedType,
+      selectedCompanyType,
       searchQuery,
       companies: allCompanies
     } = this.state;
@@ -50,8 +67,10 @@ class Companies extends Component {
       filtered = allCompanies.filter(c =>
         c.name.toLowerCase().startsWith(searchQuery.toLowerCase())
       );
-    else if (selectedType && selectedType.id)
-      filtered = allCompanies.filter(m => m.serviceType.id === selectedType.id);
+    else if (selectedCompanyType && selectedCompanyType.id)
+      filtered = allCompanies.filter(
+        m => m.serviceType.id === selectedCompanyType.id
+      );
 
     const companies = this.paginate(filtered, currentPage, pageSize);
 
@@ -60,9 +79,8 @@ class Companies extends Component {
 
   render() {
     const { pageSize, currentPage, searchQuery } = this.state;
-
     const { totalCount, data } = this.getPagedData();
-    console.log(data);
+
     return (
       <div>
         <div className="row">
@@ -70,11 +88,15 @@ class Companies extends Component {
         </div>
         <div className="row">
           <div className="col-3">
-            <ListGroup />
+            <ListGroup
+              items={this.state.companyTypes}
+              selectedItem={this.state.selectedCompanyType}
+              onItemSelect={this.handleCompanyTypeSelect}
+            />
           </div>
           <div>
             <SearchBox value={searchQuery} onChange={this.handleSearch} />
-            <CompanyCard companies={data} test="hola" />
+            <CompanyCard companies={data} />
             <Pagination
               itemsCount={totalCount}
               pageSize={pageSize}

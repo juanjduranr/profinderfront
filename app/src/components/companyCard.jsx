@@ -1,7 +1,52 @@
 import React, { Component } from "react";
-import StarRating from "./starRating";
+import { Link } from "react-router-dom";
+import StarRating from "./common/starRating";
 
 class CompanyCard extends Component {
+  renderTitle(company) {
+    return (
+      <div>
+        <Link to={`/companies/${company.id}`} className="card-title">
+          {company.name}
+        </Link>
+      </div>
+    );
+  }
+
+  renderImage(company) {
+    return (
+      <div className="col-3">
+        <Link to={`/companies/${company.id}`} className="card-title">
+          <img
+            src="https://placeimg.com/200/200/tech"
+            alt="ok"
+            className="img-thumbnail"
+          />
+        </Link>
+      </div>
+    );
+  }
+
+  renderBody(company) {
+    return (
+      <React.Fragment>
+        <div>Description: {company.description}</div>
+        <span className="badge badge-primary mt-1">$$$</span>
+        <div className="mt-1">
+          <span className="fa fa-clock-o mr-1" />
+          Since 1955
+        </div>
+        <Link to={`/companies/${company.id}`} className="card-title">
+          <input
+            type="button"
+            className="btn btn-primary mt-1"
+            value="View profile"
+          />
+        </Link>
+      </React.Fragment>
+    );
+  }
+
   render() {
     const { companies } = this.props;
 
@@ -11,42 +56,14 @@ class CompanyCard extends Component {
         {companies.map(company => (
           <div key={company.id}>
             <div className="row">
-              <div className="col-3">
-                <a href="/" className="">
-                  <img
-                    src="https://placeimg.com/200/200/tech"
-                    alt="ok"
-                    className="img-thumbnail"
-                  />
-                </a>
-              </div>
+              {this.renderImage(company)}
               <div>
-                <div>
-                  <a href="/" className="card-title">
-                    {company.name}
-                  </a>
-                </div>
+                {this.renderTitle(company)}
                 <StarRating />
-                <div>Description: {company.description}</div>
-                <span className="badge badge-primary mt-1">$$$</span>
-                <div className="mt-1">
-                  <span className="fa fa-clock-o mr-1" />
-                  Since 1955 |
-                  <span className="fa fa-handshake-o ml-1 mr-1" />
-                  Hires 19 |
-                  <span className="fa fa-usd ml-1 mr-1" />
-                  $30 / Hour
-                </div>
-                <input
-                  type="button"
-                  className="btn btn-primary mt-1"
-                  value="View profile"
-                />
+                {this.renderBody(company)}
               </div>
             </div>
-            <div>
-              <hr />
-            </div>
+            <hr />
           </div>
         ))}
       </div>
