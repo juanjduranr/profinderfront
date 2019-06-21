@@ -4,34 +4,18 @@ import NavDetail from "./common/navDetail";
 import { getCompany } from "../services/companyService";
 
 class CompanyDetail extends Component {
-  state = { company: null };
+  state = {};
 
   async componentDidMount() {
-    const currentId = this.props.location.pathname.split("/")[2];
-    const response = await getCompany(currentId);
-    this.setState({ company: response.data });
+    console.log(this.props);
   }
 
   render() {
-    const { company } = this.state;
-    if (!company) return <h1>Vacio</h1>;
+    const { company } = this.props;
+    if (!this.props.isActive) return <div />;
     else
       return (
-        <div className="offset-1 col-10">
-          <NavDetail />
-          <div className="row">
-            <div className="col-3">
-              <img
-                src="https://placeimg.com/200/200/tech"
-                alt="ok"
-                className="img-thumbnail"
-              />
-            </div>
-            <div className="col-6">
-              <h1>{this.state.company.name}</h1>
-              <StarRating />
-            </div>
-          </div>
+        <React.Fragment>
           <br />
           <div className="row col-9">
             <p>
@@ -61,10 +45,10 @@ class CompanyDetail extends Component {
               <p>
                 <b>Bussiness hours</b>
               </p>
-              <p>Qq</p>
+              <p>7:00 - 18:00</p>
             </div>
           </div>
-        </div>
+        </React.Fragment>
       );
   }
 }
