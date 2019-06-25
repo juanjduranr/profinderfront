@@ -5,7 +5,7 @@ import CompanyDetail from "./companyDetail";
 import Reviews from "./reviews";
 
 class Company extends Component {
-  state = { company: null, isDetailActive: false, isReviewsActive: true };
+  state = { company: null, isDetailActive: true, isReviewsActive: false };
 
   async componentDidMount() {
     const currentId = this.props.location.pathname.split("/")[2];
@@ -23,10 +23,10 @@ class Company extends Component {
   };
 
   onAboutClick = () => {
-    this.changeView();
+    if (!this.state.isDetailActive) this.changeView();
   };
   onReviewsClick = () => {
-    this.changeView();
+    if (!this.state.isReviewsActive) this.changeView();
   };
 
   render() {
@@ -38,14 +38,14 @@ class Company extends Component {
           <div>
             <button
               type="button"
-              class="btn btn-link mr-5"
+              className="btn btn-link mr-5"
               onClick={this.onAboutClick}
             >
               About
             </button>
             <button
               type="button"
-              class="btn btn-link mr-5"
+              className="btn btn-link mr-5"
               onClick={this.onReviewsClick}
             >
               Reviews

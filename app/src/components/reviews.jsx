@@ -1,35 +1,59 @@
 import React, { Component } from "react";
-import StarRating from "./common/starRating";
+import ReviewCard from "./reviewCard";
+import Pagination from "./common/pagination";
+import _ from "lodash";
 
 class Reviews extends Component {
   state = {
     reviews: [
-      { usuario: "jjduran", comentario: "Es una excelente empresa" },
-      { usuario: "jjduran", comentario: "Es una excelente empresa" },
-      { usuario: "jjduran", comentario: "Es una excelente empresa" }
-    ]
+      { id: 1, usuario: "jduran", comentario: "Es una excelente empresa" },
+      { id: 2, usuario: "prodriguez", comentario: "Es una excelente empresa" },
+      { id: 3, usuario: "kfatima", comentario: "Es una excelente empresa" },
+      { id: 4, usuario: "ngutierrez", comentario: "Es una excelente empresa" },
+      { id: 5, usuario: "hnunez", comentario: "Es una excelente empresa" },
+      { id: 6, usuario: "mvergara", comentario: "Es una excelente empresa" },
+      { id: 7, usuario: "zrodriguez", comentario: "Es una excelente empresa" },
+      { id: 8, usuario: "kspeaker", comentario: "Es una excelente empresa" },
+      { id: 9, usuario: "zkentenply", comentario: "Es una excelente empresa" }
+    ],
+    currentPage: 1,
+    pageSize: 5
   };
 
+  handlePageChange = page => {
+    this.setState({ currentPage: page });
+  };
+
+  getPageData = () => {
+    const { reviews: allreviews, pageSize, currentPage } = this.state;
+    const data = this.paginate(allreviews, currentPage, pageSize);
+    return { data, totalCount: allreviews.length };
+  };
+
+  paginate(items, pageNumber, pageSize) {
+    const startIndex = (pageNumber - 1) * pageSize;
+    return _(items)
+      .slice(startIndex)
+      .take(pageSize)
+      .value();
+  }
+
   render() {
+    const { data, totalCount } = this.getPageData();
+    const { pageSize, currentPage } = this.state;
+
     if (!this.props.isActive) return <div />;
     else
       return (
-        <div className="mt-4">
-          {this.state.reviews.map(r => (
-            <div>
-              <div className="row ml-3">
-                <div className="mr-3">{r.usuario}</div>
-                <StarRating />
-              </div>
-              <div className="row ml-3 mt-2">
-                <div>{r.comentario}</div>
-              </div>
-              <div>
-                <hr />
-              </div>
-            </div>
-          ))}
-        </div>
+        <React.Fragment>
+          <ReviewCard reviews={data} />
+          <Pagination
+            itemsCount={totalCount}
+            pageSize={pageSize}
+            currentPage={currentPage}
+            onPageChange={this.handlePageChange}
+          />
+        </React.Fragment>
       );
   }
 }
