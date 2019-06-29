@@ -49,7 +49,6 @@ class CompanyCard extends Component {
 
   render() {
     const { companies } = this.props;
-
     return (
       <div>
         <br />
@@ -59,7 +58,10 @@ class CompanyCard extends Component {
               {this.renderImage(company)}
               <div>
                 {this.renderTitle(company)}
-                <StarRating />
+                <StarRating
+                  rating={company.rating}
+                  totalReviews={company.reviewsCount}
+                />
                 {this.renderBody(company)}
               </div>
             </div>

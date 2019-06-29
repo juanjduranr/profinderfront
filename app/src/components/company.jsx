@@ -31,6 +31,7 @@ class Company extends Component {
 
   render() {
     const { company } = this.state;
+    console.log("oh si", company);
     if (!company) return <h1>Vacio</h1>;
     else
       return (
@@ -62,7 +63,10 @@ class Company extends Component {
             </div>
             <div className="col-6">
               <h1>{company.name}</h1>
-              <StarRating />
+              <StarRating
+                rating={company.rating}
+                totalReviews={company.reviewsCount}
+              />
             </div>
           </div>
           <CompanyDetail

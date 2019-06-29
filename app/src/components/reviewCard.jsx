@@ -5,7 +5,7 @@ class ReviewCard extends Component {
   state = {};
   render() {
     const { reviews } = this.props;
-    if (reviews.length == 0)
+    if (reviews.length === 0)
       return (
         <div class="alert alert-info mt-4" role="alert">
           This company hasn't been reviewed yet!

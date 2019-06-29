@@ -69,7 +69,7 @@ class Companies extends Component {
       );
     else if (selectedCompanyType && selectedCompanyType.id)
       filtered = allCompanies.filter(
-        m => m.serviceType.id === selectedCompanyType.id
+        m => m.serviceTypeId === selectedCompanyType.id
       );
 
     const companies = this.paginate(filtered, currentPage, pageSize);
