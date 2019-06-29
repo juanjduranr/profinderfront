@@ -1,17 +1,13 @@
 import React, { Component } from "react";
-import StarRating from "./common/starRating";
-import NavDetail from "./common/navDetail";
-import { getCompany } from "../services/companyService";
 
 class CompanyDetail extends Component {
   state = {};
 
   async componentDidMount() {
-    console.log(this.props);
+    //console.log(this.props);
   }
 
   render() {
-    const { company } = this.props;
     if (!this.props.isActive) return <div />;
     else
       return (

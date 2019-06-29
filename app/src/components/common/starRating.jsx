@@ -1,12 +1,17 @@
 import React from "react";
-const StarRating = () => {
+const StarRating = ({ rating = 0 }) => {
+  //Numbers of stars to display
+  const stars = [0, 1, 2, 3, 4];
+
+  const setStar = position => {
+    return position < rating ? "fa fa-star checked" : "fa fa-star-o checked";
+  };
+
   return (
     <div>
-      <span className="fa fa-star checked" />
-      <span className="fa fa-star checked" />
-      <span className="fa fa-star checked" />
-      <span className="fa fa-star" />
-      <span className="fa fa-star" />
+      {stars.map(star => (
+        <span key={star} className={setStar(star)} />
+      ))}
     </div>
   );
 };

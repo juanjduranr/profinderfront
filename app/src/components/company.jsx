@@ -69,7 +69,10 @@ class Company extends Component {
             company={this.state.company}
             isActive={this.state.isDetailActive}
           />
-          <Reviews isActive={this.state.isReviewsActive} />
+          <Reviews
+            isActive={this.state.isReviewsActive}
+            company={this.state.company}
+          />
         </div>
       );
   }
