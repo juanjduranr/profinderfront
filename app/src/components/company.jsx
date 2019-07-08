@@ -29,10 +29,13 @@ class Company extends Component {
     if (!this.state.isReviewsActive) this.changeView();
   };
 
+  onGoBackClick = () => {
+    this.props.history.goBack();
+  };
+
   render() {
     const { company } = this.state;
-    console.log("oh si", company);
-    if (!company) return <h1>Vacio</h1>;
+    if (!company) return <h1>Professionals</h1>;
     else
       return (
         <div className="offset-1 col-10">
@@ -76,6 +79,12 @@ class Company extends Component {
           <Reviews
             isActive={this.state.isReviewsActive}
             company={this.state.company}
+          />
+          <input
+            type="button"
+            value="Return to list"
+            className="btn btn-outline-primary"
+            onClick={this.onGoBackClick}
           />
         </div>
       );

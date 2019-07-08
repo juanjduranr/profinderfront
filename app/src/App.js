@@ -16,6 +16,7 @@ function App() {
           <Route path="/companies" component={Companies} />
         </Switch>
       </main>
+      <footer className="mt-5 mb-5" />
     </React.Fragment>
   );
 }

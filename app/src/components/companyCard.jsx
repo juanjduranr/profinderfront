@@ -29,7 +29,7 @@ class CompanyCard extends Component {
 
   renderBody(company) {
     return (
-      <React.Fragment>
+      <div>
         <div>Description: {company.description}</div>
         <span className="badge badge-primary mt-1">$$$</span>
         <div className="mt-1">
@@ -43,7 +43,7 @@ class CompanyCard extends Component {
             value="View profile"
           />
         </Link>
-      </React.Fragment>
+      </div>
     );
   }
 

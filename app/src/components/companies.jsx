@@ -82,28 +82,23 @@ class Companies extends Component {
     const { totalCount, data } = this.getPagedData();
 
     return (
-      <div>
-        <div className="row">
-          <div className="offset-3" />
+      <div className="row">
+        <div className="col-3">
+          <ListGroup
+            items={this.state.companyTypes}
+            selectedItem={this.state.selectedCompanyType}
+            onItemSelect={this.handleCompanyTypeSelect}
+          />
         </div>
-        <div className="row">
-          <div className="col-3">
-            <ListGroup
-              items={this.state.companyTypes}
-              selectedItem={this.state.selectedCompanyType}
-              onItemSelect={this.handleCompanyTypeSelect}
-            />
-          </div>
-          <div>
-            <SearchBox value={searchQuery} onChange={this.handleSearch} />
-            <CompanyCard companies={data} />
-            <Pagination
-              itemsCount={totalCount}
-              pageSize={pageSize}
-              currentPage={currentPage}
-              onPageChange={this.handlePageChange}
-            />
-          </div>
+        <div className="col">
+          <SearchBox value={searchQuery} onChange={this.handleSearch} />
+          <CompanyCard companies={data} />
+          <Pagination
+            itemsCount={totalCount}
+            pageSize={pageSize}
+            currentPage={currentPage}
+            onPageChange={this.handlePageChange}
+          />
         </div>
       </div>
     );
