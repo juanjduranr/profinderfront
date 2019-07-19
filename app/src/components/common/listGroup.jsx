@@ -7,6 +7,56 @@ const ListGroup = ({
   selectedItem,
   onItemSelect
 }) => {
+  if (items.length == 0)
+    return (
+      <ul className="list-group mt-3">
+        <li className="list-group-item clickable">
+          <div className="progress">
+            <div
+              className="progress-bar"
+              role="progressbar"
+              aria-valuenow="0"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            />
+          </div>
+        </li>
+        <li className="list-group-item clickable">
+          <div className="progress">
+            <div
+              className="progress-bar"
+              role="progressbar"
+              aria-valuenow="0"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            />
+          </div>
+        </li>
+        <li className="list-group-item clickable">
+          <div className="progress">
+            <div
+              className="progress-bar"
+              role="progressbar"
+              aria-valuenow="0"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            />
+          </div>
+        </li>
+        <li className="list-group-item clickable">
+          <div className="progress">
+            <div
+              className="progress-bar"
+              role="progressbar"
+              aria-valuenow="0"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            />
+          </div>
+        </li>
+      </ul>
+    );
+
   return (
     <ul className="list-group mt-3">
       {items.map(item => (

@@ -17,8 +17,8 @@ class ReviewCard extends Component {
           <div key={r.id}>
             <div className="row ml-3">
               <div>{r.usuario}</div>
-              <h3>Title</h3>
-              <div className="ml-4 mt-2">
+              <h4>Title</h4>
+              <div className="ml-4 mt-1">
                 <StarRating rating={r.rating} />
               </div>
             </div>

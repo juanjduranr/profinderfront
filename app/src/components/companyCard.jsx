@@ -49,6 +49,14 @@ class CompanyCard extends Component {
 
   render() {
     const { companies } = this.props;
+
+    if (companies.length == 0)
+      return (
+        <div className="alert alert-light" role="alert">
+          The list of professionals is empty!
+        </div>
+      );
+
     return (
       <div>
         <br />
