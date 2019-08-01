@@ -1,6 +1,5 @@
 import http from "./httpService";
-
-const apiUrl = "http://localhost:65190/";
+import { apiUrl } from "../config.json";
 
 function apiEndpoint(companyId) {
   return `api/companies/${companyId}/reviews`;

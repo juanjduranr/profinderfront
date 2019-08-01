@@ -7,7 +7,7 @@ const ListGroup = ({
   selectedItem,
   onItemSelect
 }) => {
-  if (items.length == 0)
+  if (items.length === 0)
     return (
       <ul className="list-group mt-3">
         <li className="list-group-item clickable">

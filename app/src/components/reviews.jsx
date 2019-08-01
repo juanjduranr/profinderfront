@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import ReviewCard from "./reviewCard";
 import Pagination from "./common/pagination";
+import { paginate } from "../utils/paginate";
 import { getReviewsByCompany } from "../services/reviewService";
-import _ from "lodash";
 
 class Reviews extends Component {
   state = {
     reviews: [],
     currentPage: 1,
-    pageSize: 2
+    pageSize: 3
   };
 
   async componentDidMount() {
@@ -23,17 +23,9 @@ class Reviews extends Component {
 
   getPageData = () => {
     const { reviews: allreviews, pageSize, currentPage } = this.state;
-    const data = this.paginate(allreviews, currentPage, pageSize);
+    const data = paginate(allreviews, currentPage, pageSize);
     return { data, totalCount: allreviews.length };
   };
-
-  paginate(items, pageNumber, pageSize) {
-    const startIndex = (pageNumber - 1) * pageSize;
-    return _(items)
-      .slice(startIndex)
-      .take(pageSize)
-      .value();
-  }
 
   render() {
     const { data, totalCount } = this.getPageData();

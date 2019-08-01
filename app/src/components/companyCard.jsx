@@ -30,11 +30,16 @@ class CompanyCard extends Component {
   renderBody(company) {
     return (
       <div>
-        <div>Description: {company.description}</div>
+        <div>
+          Description:
+          {company.description.length > 80
+            ? ` ${company.description.substr(0, 80)}...`
+            : ` ${company.description}`}
+        </div>
         <span className="badge badge-primary mt-1">$$$</span>
         <div className="mt-1">
           <span className="fa fa-clock-o mr-1" />
-          Since 1955
+          Since {new Date(company.foundedDate).getFullYear()}
         </div>
         <Link to={`/companies/${company.id}`} className="card-title">
           <input
@@ -50,7 +55,7 @@ class CompanyCard extends Component {
   render() {
     const { companies } = this.props;
 
-    if (companies.length == 0)
+    if (companies.length === 0)
       return (
         <div className="alert alert-light" role="alert">
           The list of professionals is empty!
@@ -68,7 +73,7 @@ class CompanyCard extends Component {
                 {this.renderTitle(company)}
                 <StarRating
                   rating={company.rating}
-                  totalReviews={company.reviewsCount}
+                  totalReviews={company.totalReviews}
                 />
                 {this.renderBody(company)}
               </div>

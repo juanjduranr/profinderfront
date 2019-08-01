@@ -1,11 +1,11 @@
 import React, { Component } from "react";
+import { paginate } from "../utils/paginate";
 import { getCompanies } from "../services/companyService";
 import { getCompanyTypes } from "../services/companyTypeService";
 import Pagination from "./common/pagination";
 import SearchBox from "./common/searchBox";
 import ListGroup from "./common/listGroup";
 import CompanyCard from "./companyCard";
-import _ from "lodash";
 
 class Companies extends Component {
   state = {
@@ -23,14 +23,6 @@ class Companies extends Component {
     const companyTypes = [{ id: 0, name: "All" }, ...companyTypesData];
 
     this.setState({ companies, companyTypes });
-  }
-
-  paginate(items, pageNumber, pageSize) {
-    const startIndex = (pageNumber - 1) * pageSize;
-    return _(items)
-      .slice(startIndex)
-      .take(pageSize)
-      .value();
   }
 
   handlePageChange = page => {
@@ -69,10 +61,10 @@ class Companies extends Component {
       );
     else if (selectedCompanyType && selectedCompanyType.id)
       filtered = allCompanies.filter(
-        m => m.serviceTypeId === selectedCompanyType.id
+        m => m.companyTypeId === selectedCompanyType.id
       );
 
-    const companies = this.paginate(filtered, currentPage, pageSize);
+    const companies = paginate(filtered, currentPage, pageSize);
 
     return { totalCount: filtered.length, data: companies };
   };

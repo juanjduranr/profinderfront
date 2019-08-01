@@ -68,7 +68,7 @@ class Company extends Component {
               <h1>{company.name}</h1>
               <StarRating
                 rating={company.rating}
-                totalReviews={company.reviewsCount}
+                totalReviews={company.totalReviews}
               />
             </div>
           </div>
