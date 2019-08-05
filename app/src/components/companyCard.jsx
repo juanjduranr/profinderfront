@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import StarRating from "./common/starRating";
 
-const CompanyCard = ({ companies }) => {
+const CompanyCard = ({ companies, totalCount }) => {
   const renderTitle = company => {
     return (
       <div>
@@ -61,7 +61,9 @@ const CompanyCard = ({ companies }) => {
 
   return (
     <div>
-      <br />
+      <p>
+        Showing {companies.length} out of a total of {totalCount} professionals!
+      </p>
       {companies.map(company => (
         <div key={company.id}>
           <div className="row">

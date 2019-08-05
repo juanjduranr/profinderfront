@@ -66,12 +66,12 @@ class Companies extends Component {
 
     const companies = paginate(filtered, currentPage, pageSize);
 
-    return { totalCount: filtered.length, data: companies };
+    return { totalCount: filtered.length, companies };
   };
 
   render() {
     const { pageSize, currentPage, searchQuery } = this.state;
-    const { totalCount, data } = this.getPagedData();
+    const { totalCount, companies } = this.getPagedData();
 
     return (
       <div className="row">
@@ -84,7 +84,7 @@ class Companies extends Component {
         </div>
         <div className="col">
           <SearchBox value={searchQuery} onChange={this.handleSearch} />
-          <CompanyCard companies={data} />
+          <CompanyCard companies={companies} totalCount={totalCount} />
           <Pagination
             itemsCount={totalCount}
             pageSize={pageSize}
