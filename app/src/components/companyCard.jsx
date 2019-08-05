@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import StarRating from "./common/starRating";
+import { lowPriceTag, midPriceTag, highPriceTag } from "../config.json";
 
 const CompanyCard = ({ companies, totalCount }) => {
   const renderTitle = company => {
@@ -11,6 +12,13 @@ const CompanyCard = ({ companies, totalCount }) => {
         </Link>
       </div>
     );
+  };
+
+  const getPriceTag = price => {
+    if (price <= lowPriceTag) return "$";
+    else if (price <= midPriceTag) return "$$";
+
+    return "$$$";
   };
 
   const renderImage = company => {
@@ -36,7 +44,9 @@ const CompanyCard = ({ companies, totalCount }) => {
             ? ` ${company.description.substr(0, 80)}...`
             : ` ${company.description}`}
         </div>
-        <span className="badge badge-primary mt-1">$$$</span>
+        <span className="badge badge-primary mt-1">
+          {getPriceTag(company.costPerHour)}
+        </span>
         <div className="mt-1">
           <span className="fa fa-clock-o mr-1" />
           Since {new Date(company.foundedDate).getFullYear()}
@@ -62,7 +72,7 @@ const CompanyCard = ({ companies, totalCount }) => {
   return (
     <div>
       <p>
-        Showing {companies.length} out of a total of {totalCount} professionals!
+        Showing {companies.length} out of a total of {totalCount} professionals.
       </p>
       {companies.map(company => (
         <div key={company.id}>

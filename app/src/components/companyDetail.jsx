@@ -1,6 +1,17 @@
 import React from "react";
 
 const CompanyDetail = ({ company, isActive }) => {
+  const getYearsInBusiness = foundedDate => {
+    var diffDate = Date.now() - new Date(foundedDate).getTime();
+    var yearsDate = new Date(diffDate);
+    return Math.abs(yearsDate.getUTCFullYear() - 1970);
+  };
+
+  const renderYearsInBusiness = foundedDate => {
+    const yearsInBusiness = getYearsInBusiness(foundedDate);
+    if (yearsInBusiness > 0) return <p>{yearsInBusiness} years in business</p>;
+  };
+
   if (!isActive) return <div />;
   return (
     <React.Fragment>
@@ -17,7 +28,7 @@ const CompanyDetail = ({ company, isActive }) => {
             <b>Overview</b>
           </p>
           <p>{company.numberOfEmployees} employees</p>
-          <p>11 years in business</p>
+          {renderYearsInBusiness(company.foundedDate)}
         </div>
         <div className="col-4">
           <p>
