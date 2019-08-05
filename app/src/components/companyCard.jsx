@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import StarRating from "./common/starRating";
 
-class CompanyCard extends Component {
-  renderTitle(company) {
+const CompanyCard = ({ companies }) => {
+  const renderTitle = company => {
     return (
       <div>
         <Link to={`/companies/${company.id}`} className="card-title">
@@ -11,9 +11,9 @@ class CompanyCard extends Component {
         </Link>
       </div>
     );
-  }
+  };
 
-  renderImage(company) {
+  const renderImage = company => {
     return (
       <div className="col-3">
         <Link to={`/companies/${company.id}`} className="card-title">
@@ -25,9 +25,9 @@ class CompanyCard extends Component {
         </Link>
       </div>
     );
-  }
+  };
 
-  renderBody(company) {
+  const renderBody = company => {
     return (
       <div>
         <div>
@@ -50,40 +50,36 @@ class CompanyCard extends Component {
         </Link>
       </div>
     );
-  }
+  };
 
-  render() {
-    const { companies } = this.props;
-
-    if (companies.length === 0)
-      return (
-        <div className="alert alert-light" role="alert">
-          The list of professionals is empty!
-        </div>
-      );
-
+  if (companies.length === 0)
     return (
-      <div>
-        <br />
-        {companies.map(company => (
-          <div key={company.id}>
-            <div className="row">
-              {this.renderImage(company)}
-              <div>
-                {this.renderTitle(company)}
-                <StarRating
-                  rating={company.rating}
-                  totalReviews={company.totalReviews}
-                />
-                {this.renderBody(company)}
-              </div>
-            </div>
-            <hr />
-          </div>
-        ))}
+      <div className="alert alert-light" role="alert">
+        The list of professionals is empty!
       </div>
     );
-  }
-}
+
+  return (
+    <div>
+      <br />
+      {companies.map(company => (
+        <div key={company.id}>
+          <div className="row">
+            {renderImage(company)}
+            <div>
+              {renderTitle(company)}
+              <StarRating
+                rating={company.rating}
+                totalReviews={company.totalReviews}
+              />
+              {renderBody(company)}
+            </div>
+          </div>
+          <hr />
+        </div>
+      ))}
+    </div>
+  );
+};
 
 export default CompanyCard;
