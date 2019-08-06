@@ -14,8 +14,7 @@ const ReviewCard = ({ reviews }) => {
       {reviews.map(r => (
         <div key={r.id}>
           <div className="row ml-3">
-            <div>{r.usuario}</div>
-            <h4>{r.title}</h4>
+            <h4>{r.customerName}</h4>
             <div className="ml-4 mt-1">
               <StarRating rating={r.rating} />
             </div>

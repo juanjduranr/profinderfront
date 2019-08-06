@@ -34,7 +34,8 @@ const CompanyDetail = ({ company, isActive }) => {
           <p>
             <b>Bussiness hours</b>
           </p>
-          <p>7:00 - 18:00</p>
+          <p>{company.businessDays}</p>
+          <p>{company.businessHours}</p>
         </div>
       </div>
     </React.Fragment>

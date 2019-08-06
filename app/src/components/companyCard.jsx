@@ -40,8 +40,8 @@ const CompanyCard = ({ companies, totalCount }) => {
       <div>
         <div>
           Description:
-          {company.description.length > 80
-            ? ` ${company.description.substr(0, 80)}...`
+          {company.description.length > 60
+            ? ` ${company.description.substr(0, 60)}...`
             : ` ${company.description}`}
         </div>
         <span className="badge badge-primary mt-1">
