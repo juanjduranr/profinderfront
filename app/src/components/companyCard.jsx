@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import StarRating from "./common/starRating";
-import { lowPriceTag, midPriceTag, highPriceTag } from "../config.json";
+import { lowPriceTag, midPriceTag } from "../config.json";
 
 const CompanyCard = ({ companies, totalCount }) => {
   const renderTitle = company => {

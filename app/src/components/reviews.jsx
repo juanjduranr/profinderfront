@@ -30,7 +30,6 @@ class Reviews extends Component {
   render() {
     const { data, totalCount } = this.getPageData();
     const { pageSize, currentPage } = this.state;
-    console.log(data);
     if (!this.props.isActive) return <div />;
     else
       return (

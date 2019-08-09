@@ -1,6 +1,5 @@
 {
   "apiUrl": "http://localhost:32867/",
   "lowPriceTag": "40",
-  "midPriceTag": "70",
-  "highPriceTag": "100"
+  "midPriceTag": "70"
 }
