@@ -1,9 +1,10 @@
 import React from "react";
 import { ToastContainer } from "react-toastify";
-import { Route, Switch } from "react-router-dom";
+import { Route, Redirect, Switch } from "react-router-dom";
 import NavBar from "./components/navBar";
 import Company from "./components/company";
 import Companies from "./components/companies";
+import NotFound from "./components/notFound";
 import Home from "./components/home";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
@@ -17,10 +18,13 @@ function App() {
         <Switch>
           <Route path="/companies/:id" component={Company} />
           <Route path="/companies" component={Companies} />
-          <Route path="/" component={Home} />
+          <Route path="/not-found" component={NotFound} />
+          <Route path="/home" component={Home} />
+          <Redirect from="/" exact to="/home" />
+          <Redirect to="/not-found" />
         </Switch>
       </main>
-      <footer className="mt-5 mb-5" />
+      <footer />
     </React.Fragment>
   );
 }

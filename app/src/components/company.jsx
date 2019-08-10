@@ -8,9 +8,14 @@ class Company extends Component {
   state = { company: null, isDetailActive: true, isReviewsActive: false };
 
   async componentDidMount() {
-    const currentId = this.props.location.pathname.split("/")[2];
-    const response = await getCompany(currentId);
-    this.setState({ company: response.data });
+    try {
+      const currentId = this.props.location.pathname.split("/")[2];
+      const response = await getCompany(currentId);
+      this.setState({ company: response.data });
+    } catch (ex) {
+      if (ex.response && ex.response.status === 404)
+        this.props.history.replace("/not-found");
+    }
   }
 
   changeView = () => {
