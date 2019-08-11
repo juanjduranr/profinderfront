@@ -5,7 +5,7 @@ import { getCompanyTypes } from "../services/companyTypeService";
 import Pagination from "./common/pagination";
 import SearchBox from "./common/searchBox";
 import ListGroup from "./common/listGroup";
-import CompanyCard from "./companyCard";
+import CompaniesDetail from "./companiesDetail";
 
 class Companies extends Component {
   state = {
@@ -84,7 +84,7 @@ class Companies extends Component {
         </div>
         <div className="col">
           <SearchBox value={searchQuery} onChange={this.handleSearch} />
-          <CompanyCard companies={companies} totalCount={totalCount} />
+          <CompaniesDetail companies={companies} totalCount={totalCount} />
           <Pagination
             itemsCount={totalCount}
             pageSize={pageSize}

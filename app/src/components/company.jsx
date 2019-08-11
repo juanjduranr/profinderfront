@@ -75,6 +75,12 @@ class Company extends Component {
                 rating={company.rating}
                 totalReviews={company.totalReviews}
               />
+              <input
+                type="button"
+                value="Add review"
+                className="btn btn-warning mt-3"
+                onClick={this.onGoBackClick}
+              />
             </div>
           </div>
           <CompanyDetail

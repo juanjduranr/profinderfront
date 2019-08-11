@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import StarRating from "./common/starRating";
 import { lowPriceTag, midPriceTag } from "../config.json";
 
-const CompanyCard = ({ companies, totalCount }) => {
+const CompaniesDetail = ({ companies, totalCount }) => {
   const renderTitle = company => {
     return (
       <div>
@@ -94,4 +94,4 @@ const CompanyCard = ({ companies, totalCount }) => {
   );
 };
 
-export default CompanyCard;
+export default CompaniesDetail;
