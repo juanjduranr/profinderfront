@@ -78,7 +78,7 @@ const CompaniesDetail = ({ companies, totalCount }) => {
         <div key={company.id}>
           <div className="row">
             {renderImage(company)}
-            <div>
+            <div className="small-rel-margin">
               {renderTitle(company)}
               <StarRating
                 rating={company.rating}
