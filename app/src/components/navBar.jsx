@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const NavBar = ({ user }) => {
   return (
-    <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <nav className="navbar navbar-expand navbar-dark fixed-top bg-dark">
       <NavLink className="navbar-brand" to="/">
         Pro Finder
       </NavLink>

@@ -4,6 +4,7 @@ import { Route, Redirect, Switch } from "react-router-dom";
 import NavBar from "./components/navBar";
 import LoginForm from "./components/loginForm";
 import Logout from "./components/logout";
+import Profile from "./components/profile";
 import Company from "./components/company";
 import Companies from "./components/companies";
 import NotFound from "./components/notFound";
@@ -30,6 +31,7 @@ class App extends Component {
           <Switch>
             <Route path="/login" component={LoginForm} />
             <Route path="/logout" component={Logout} />
+            <Route path="/profile" component={Profile} />
             <Route path="/companies/:id" component={Company} />
             <Route path="/companies" component={Companies} />
             <Route path="/not-found" component={NotFound} />

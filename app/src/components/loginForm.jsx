@@ -23,8 +23,6 @@ class LoginForm extends Form {
     try {
       const { data } = this.state;
       await authService.login(data.username, data.password);
-      const { preferred_username } = authService.getCurrentUser();
-
       const { state } = this.props.location;
       window.location = state ? state.from.pathname : "/";
     } catch (ex) {

@@ -63,11 +63,7 @@ class Company extends Component {
           </div>
           <div className="row">
             <div className="col-3">
-              <img
-                src="https://placeimg.com/200/200/tech"
-                alt="ok"
-                className="img-thumbnail"
-              />
+              <img src={company.imageUrl} alt="ok" className="img-thumbnail" />
             </div>
             <div className="col-6">
               <h1>{company.name}</h1>

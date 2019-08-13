@@ -25,11 +25,7 @@ const CompaniesDetail = ({ companies, totalCount }) => {
     return (
       <div className="col-3">
         <Link to={`/companies/${company.id}`} className="card-title">
-          <img
-            src="https://placeimg.com/200/200/tech"
-            alt="ok"
-            className="img-thumbnail"
-          />
+          <img src={company.imageUrl} alt="ok" className="img-thumbnail" />
         </Link>
       </div>
     );
