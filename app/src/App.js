@@ -10,6 +10,7 @@ import ReviewForm from "./components/reviewForm";
 import Companies from "./components/companies";
 import NotFound from "./components/notFound";
 import Home from "./components/home";
+import ProtectedRoute from "./components/common/protectedRoute";
 import authService from "./services/authService";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
@@ -32,10 +33,13 @@ class App extends Component {
           <Switch>
             <Route path="/login" component={LoginForm} />
             <Route path="/logout" component={Logout} />
-            <Route path="/profile" component={Profile} />
-            <Route path="/companies/:id" component={Company} />
+            <ProtectedRoute path="/profile" component={Profile} />
+            <Route
+              path="/companies/:id"
+              render={props => <Company {...props} user={this.state.user} />}
+            />
             <Route path="/companies" component={Companies} />
-            <Route path="/addreview/:id" component={ReviewForm} />
+            <ProtectedRoute path="/addreview/:id" component={ReviewForm} />
             <Route path="/not-found" component={NotFound} />
             <Route path="/home" component={Home} />
             <Redirect from="/" exact to="/home" />

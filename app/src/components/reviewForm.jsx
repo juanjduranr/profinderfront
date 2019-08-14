@@ -32,6 +32,7 @@ class ReviewForm extends Form {
       const companyId = this.props.location.pathname.split("/")[2];
       const { data } = await companyService.getCompany(companyId);
       this.setState({ companyId: data.id });
+      this.onOver(5);
     } catch (ex) {
       if (ex.response && ex.response.status === 404)
         this.props.history.replace("/not-found");
@@ -66,7 +67,7 @@ class ReviewForm extends Form {
       };
       await reviewService.addReview(review, authService.getAuthHeader());
       toast.success("Review successfully added.");
-      this.props.history.push("/companies");
+      this.props.history.push("/companies/" + this.state.companyId);
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
         toast.error("An error has ocurred.");

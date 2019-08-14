@@ -13,7 +13,12 @@ export function addReview(review, config) {
   return http.post(apiUrl + "api/reviews", review, config);
 }
 
+export function deleteReview(id, config) {
+  return http.delete(apiUrl + "api/reviews/" + id, config);
+}
+
 export default {
   getReviewsByCompany,
-  addReview
+  addReview,
+  deleteReview
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import StarRating from "./common/starRating";
 
-const ReviewCard = ({ reviews }) => {
+const ReviewCard = ({ reviews, user, onDelete }) => {
   if (reviews.length === 0)
     return (
       <div className="alert alert-info mt-4" role="alert">
@@ -18,6 +18,14 @@ const ReviewCard = ({ reviews }) => {
             <div className="ml-4 mt-1">
               <StarRating rating={r.rating} />
             </div>
+            {user && user.id == r.customerId && (
+              <input
+                type="button"
+                className="btn btn-danger btn-sml ml-4"
+                value="delete"
+                onClick={() => onDelete(r)}
+              />
+            )}
           </div>
           <div className="row ml-3 mt-2">
             <div>{r.comment}</div>

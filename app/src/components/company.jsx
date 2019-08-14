@@ -11,8 +11,8 @@ class Company extends Component {
   async componentDidMount() {
     try {
       const companyId = this.props.location.pathname.split("/")[2];
-      const response = await getCompany(companyId);
-      this.setState({ company: response.data });
+      const { data: company } = await getCompany(companyId);
+      this.setState({ company });
     } catch (ex) {
       if (ex.response && ex.response.status === 404)
         this.props.history.replace("/not-found");
@@ -41,6 +41,7 @@ class Company extends Component {
 
   render() {
     const { company } = this.state;
+    const { user } = this.props;
     if (!company) return <h1>Professionals</h1>;
     else
       return (
