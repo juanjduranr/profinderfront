@@ -6,6 +6,7 @@ import LoginForm from "./components/loginForm";
 import Logout from "./components/logout";
 import Profile from "./components/profile";
 import Company from "./components/company";
+import ReviewForm from "./components/reviewForm";
 import Companies from "./components/companies";
 import NotFound from "./components/notFound";
 import Home from "./components/home";
@@ -34,6 +35,7 @@ class App extends Component {
             <Route path="/profile" component={Profile} />
             <Route path="/companies/:id" component={Company} />
             <Route path="/companies" component={Companies} />
+            <Route path="/addreview/:id" component={ReviewForm} />
             <Route path="/not-found" component={NotFound} />
             <Route path="/home" component={Home} />
             <Redirect from="/" exact to="/home" />

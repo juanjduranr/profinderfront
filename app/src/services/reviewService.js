@@ -8,3 +8,12 @@ function apiEndpoint(companyId) {
 export function getReviewsByCompany(companyId) {
   return http.get(apiUrl + apiEndpoint(companyId));
 }
+
+export function addReview(review, config) {
+  return http.post(apiUrl + "api/reviews", review, config);
+}
+
+export default {
+  getReviewsByCompany,
+  addReview
+};

@@ -4,7 +4,7 @@ import { apiUrl } from "../config.json";
 
 const apiEndpoint = apiUrl + "token";
 const tokenKey = "token";
-
+const bearerKey = "bearer";
 //http.setJwt(getJwt());
 
 export async function login(username, password) {
@@ -27,6 +27,12 @@ export function getCurrentUser() {
   }
 }
 
+export function getAuthHeader() {
+  return {
+    headers: { Authorization: `${bearerKey} ${localStorage.getItem(tokenKey)}` }
+  };
+}
+
 export function getJwt() {
   return localStorage.getItem(tokenKey);
 }
@@ -35,5 +41,6 @@ export default {
   login,
   logout,
   getCurrentUser,
-  getJwt
+  getJwt,
+  getAuthHeader
 };

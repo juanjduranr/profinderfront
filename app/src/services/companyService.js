@@ -10,3 +10,8 @@ export function getCompanies() {
 export function getCompany(id) {
   return http.get(apiUrl + apiEndpoint + "/" + id);
 }
+
+export default {
+  getCompanies,
+  getCompany
+};

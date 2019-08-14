@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import StarRating from "./common/starRating";
 import { getCompany } from "../services/companyService";
 import CompanyDetail from "./companyDetail";
@@ -9,8 +10,8 @@ class Company extends Component {
 
   async componentDidMount() {
     try {
-      const currentId = this.props.location.pathname.split("/")[2];
-      const response = await getCompany(currentId);
+      const companyId = this.props.location.pathname.split("/")[2];
+      const response = await getCompany(companyId);
       this.setState({ company: response.data });
     } catch (ex) {
       if (ex.response && ex.response.status === 404)
@@ -71,12 +72,13 @@ class Company extends Component {
                 rating={company.rating}
                 totalReviews={company.totalReviews}
               />
-              <input
-                type="button"
-                value="Add review"
-                className="btn btn-warning mt-3"
-                onClick={this.onGoBackClick}
-              />
+              <Link to={`/addreview/${company.id}`} className="card-title">
+                <input
+                  type="button"
+                  className="btn btn-warning mt-3"
+                  value="Add review"
+                />
+              </Link>
             </div>
           </div>
           <CompanyDetail
