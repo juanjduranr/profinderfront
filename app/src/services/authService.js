@@ -5,12 +5,13 @@ import { apiUrl } from "../config.json";
 const apiEndpoint = apiUrl + "token";
 const tokenKey = "token";
 const bearerKey = "bearer";
-//http.setJwt(getJwt());
+const dateKey = "date";
+const tokenExpiredException = "tokenExpiredException";
 
 export async function login(username, password) {
   const { data } = await http.post(apiEndpoint, { username, password });
-  console.log(data.accessToken);
   localStorage.setItem(tokenKey, data.accessToken);
+  localStorage.setItem(dateKey, new Date());
 }
 
 export function logout() {
@@ -27,13 +28,21 @@ export function getCurrentUser() {
   }
 }
 
+function validateToken() {
+  const currentDate = new Date();
+  const pastDate = new Date(localStorage.getItem(dateKey));
+  return Math.abs(currentDate - pastDate) / 36e5 < 1;
+}
+
 export function getAuthHeader() {
+  if (!validateToken()) throw new Error(tokenExpiredException);
   return {
     headers: { Authorization: `${bearerKey} ${localStorage.getItem(tokenKey)}` }
   };
 }
 
 export function getJwt() {
+  if (!validateToken()) throw new Error(tokenExpiredException);
   return localStorage.getItem(tokenKey);
 }
 

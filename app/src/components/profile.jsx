@@ -25,10 +25,17 @@ class Profile extends Form {
   };
 
   async componentDidMount() {
-    const { data } = await userService.getProfile(authService.getJwt());
-    this.setState({
-      data: { name: data.name, lastName: data.lastName, email: data.email }
-    });
+    try {
+      const { data } = await userService.getProfile(authService.getJwt());
+      this.setState({
+        data: { name: data.name, lastName: data.lastName, email: data.email }
+      });
+    } catch (error) {
+      if (error && error.message === "tokenExpiredException") {
+        alert("Session has expired.");
+        this.props.history.push("/logout");
+      }
+    }
   }
 
   doSubmit = async () => {

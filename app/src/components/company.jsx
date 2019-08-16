@@ -41,7 +41,7 @@ class Company extends Component {
 
   render() {
     const { company } = this.state;
-    const { user } = this.props;
+    //const { user } = this.props;
     if (!company) return <h1>Professionals</h1>;
     else
       return (

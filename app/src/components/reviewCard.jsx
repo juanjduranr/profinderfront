@@ -2,6 +2,7 @@ import React from "react";
 import StarRating from "./common/starRating";
 
 const ReviewCard = ({ reviews, user, onDelete }) => {
+  console.log(reviews);
   if (reviews.length === 0)
     return (
       <div className="alert alert-info mt-4" role="alert">
@@ -18,7 +19,7 @@ const ReviewCard = ({ reviews, user, onDelete }) => {
             <div className="ml-4 mt-1">
               <StarRating rating={r.rating} />
             </div>
-            {user && user.id == r.customerId && (
+            {user && user.id === parseInt(r.customerId) && (
               <input
                 type="button"
                 className="btn btn-danger btn-sml ml-4"
