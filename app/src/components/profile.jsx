@@ -4,11 +4,13 @@ import Form from "./common/form";
 import userService from "../services/userService";
 import authService from "../services/authService";
 import { toast } from "react-toastify";
+import ModalMessage from "./common/modalMessage";
 
 class Profile extends Form {
   state = {
     data: { name: "", lastName: "", email: "" },
-    errors: {}
+    errors: {},
+    showModal: false
   };
 
   schema = {
@@ -32,11 +34,19 @@ class Profile extends Form {
       });
     } catch (ex) {
       if (ex && ex.message === "tokenExpiredException") {
-        alert("Session has expired.");
-        this.props.history.push("/logout");
+        this.handleOpen();
       }
     }
   }
+
+  handleOpen = () => {
+    this.setState({ showModal: true });
+  };
+
+  handleClose = () => {
+    this.setState({ showModal: false });
+    this.props.history.push("/logout");
+  };
 
   doSubmit = async () => {
     try {
@@ -67,6 +77,12 @@ class Profile extends Form {
           {this.renderInput("email", "Email")}
           {this.renderButton("Save")}
         </form>
+        <ModalMessage
+          message="Session has expired"
+          show={this.state.showModal}
+          onOpen={this.handleOpen}
+          onClose={this.handleClose}
+        />
       </div>
     );
   }

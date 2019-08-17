@@ -16,6 +16,7 @@ export async function login(username, password) {
 
 export function logout() {
   localStorage.removeItem(tokenKey);
+  localStorage.removeItem(dateKey);
 }
 
 export function getCurrentUser() {
