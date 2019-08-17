@@ -14,9 +14,7 @@ class Reviews extends Component {
   };
 
   async componentDidMount() {
-    const { company } = this.props;
-    const response = await reviewService.getReviewsByCompany(company.id);
-    this.setState({ reviews: response.data });
+    this.setState({ reviews: this.props.company.reviews });
   }
 
   handlePageChange = page => {
@@ -31,6 +29,7 @@ class Reviews extends Component {
     try {
       const config = authService.getAuthHeader();
       await reviewService.deleteReview(review.id, config);
+      this.props.onChange();
     } catch (ex) {
       if (ex && ex.message === "tokenExpiredException") {
         alert("Session has expired.");

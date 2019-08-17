@@ -2,7 +2,6 @@ import React from "react";
 import StarRating from "./common/starRating";
 
 const ReviewCard = ({ reviews, user, onDelete }) => {
-  console.log(reviews);
   if (reviews.length === 0)
     return (
       <div className="alert alert-info mt-4" role="alert">

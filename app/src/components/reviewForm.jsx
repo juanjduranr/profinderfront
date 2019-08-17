@@ -33,6 +33,10 @@ class ReviewForm extends Form {
     }
   }
 
+  handleGoBack = () => {
+    this.props.history.goBack();
+  };
+
   handleRatingChange = rating => {
     console.log(rating);
     this.setState({ rating });
@@ -74,7 +78,12 @@ class ReviewForm extends Form {
           </div>
           {this.renderInput("comment", "Comment")}
           <div />
-          <br />
+          <input
+            type="button"
+            value="Back"
+            className="btn btn-outline-primary mr-3"
+            onClick={this.handleGoBack}
+          />
           {this.renderButton("Save")}
         </form>
       </div>

@@ -6,9 +6,13 @@ import CompanyDetail from "./companyDetail";
 import Reviews from "./reviews";
 
 class Company extends Component {
-  state = { company: null, isDetailActive: true, isReviewsActive: false };
+  state = {
+    company: null,
+    isDetailActive: true,
+    isReviewsActive: false
+  };
 
-  async componentDidMount() {
+  async getCompany() {
     try {
       const companyId = this.props.location.pathname.split("/")[2];
       const { data: company } = await getCompany(companyId);
@@ -18,6 +22,14 @@ class Company extends Component {
         this.props.history.replace("/not-found");
     }
   }
+
+  async componentDidMount() {
+    await this.getCompany();
+  }
+
+  handleReviewChange = async () => {
+    await this.getCompany();
+  };
 
   changeView = () => {
     const isDetailActive = !this.state.isDetailActive;
@@ -41,7 +53,6 @@ class Company extends Component {
 
   render() {
     const { company } = this.state;
-    //const { user } = this.props;
     if (!company) return <h1>Professionals</h1>;
     else
       return (
@@ -89,6 +100,7 @@ class Company extends Component {
           <Reviews
             isActive={this.state.isReviewsActive}
             company={this.state.company}
+            onChange={this.handleReviewChange}
           />
           <input
             type="button"

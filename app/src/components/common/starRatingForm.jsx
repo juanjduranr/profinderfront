@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-const starOn = "fa fa-star checked";
-const starOff = "fa fa-star-o checked";
+const starOn = "fa fa-star fa-2x checked";
+const starOff = "fa fa-star-o fa-2x checked";
 class StartRatingForm extends Component {
   state = {
     stars: [starOn, starOn, starOn, starOn, starOn]
   };
 
-  onOver = rating => {
+  handleOnOver = rating => {
     const stars = [...this.state.stars];
     for (let i = 1; i < stars.length; i++) {
       stars[i] = rating <= i ? starOff : starOn;
@@ -23,7 +23,7 @@ class StartRatingForm extends Component {
           <span
             key={index}
             className={star}
-            onMouseOver={() => this.onOver(index + 1)}
+            onMouseOver={() => this.handleOnOver(index + 1)}
           />
         ))}
       </React.Fragment>
