@@ -36,7 +36,7 @@ class Company extends Component {
   };
 
   onGoBackClick = () => {
-    this.props.history.goBack();
+    this.props.history.push("/companies");
   };
 
   render() {

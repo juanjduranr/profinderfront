@@ -19,7 +19,7 @@ const ReviewCard = ({ reviews, user, onDelete }) => {
             <div className="ml-4 mt-1">
               <StarRating rating={r.rating} />
             </div>
-            {user && user.id === parseInt(r.customerId) && (
+            {user && user.id === r.customerId && (
               <input
                 type="button"
                 className="btn btn-danger btn-sml ml-4"

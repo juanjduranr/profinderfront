@@ -21,7 +21,8 @@ export function logout() {
 export function getCurrentUser() {
   try {
     const jwt = localStorage.getItem(tokenKey);
-    const { sub: id, preferred_username: name } = jwtDecode(jwt);
+    const { sub, preferred_username: name } = jwtDecode(jwt);
+    const id = parseInt(sub, 10);
     return { id, name };
   } catch (ex) {
     return null;

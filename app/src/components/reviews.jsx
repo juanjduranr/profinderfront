@@ -32,6 +32,11 @@ class Reviews extends Component {
       const config = authService.getAuthHeader();
       await reviewService.deleteReview(review.id, config);
     } catch (ex) {
+      if (ex && ex.message === "tokenExpiredException") {
+        alert("Session has expired.");
+        this.props.history.push("/logout");
+      }
+
       if (ex.response && ex.response.status === 404)
         toast.error("This review has already been deleted.");
 

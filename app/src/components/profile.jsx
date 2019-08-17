@@ -30,8 +30,8 @@ class Profile extends Form {
       this.setState({
         data: { name: data.name, lastName: data.lastName, email: data.email }
       });
-    } catch (error) {
-      if (error && error.message === "tokenExpiredException") {
+    } catch (ex) {
+      if (ex && ex.message === "tokenExpiredException") {
         alert("Session has expired.");
         this.props.history.push("/logout");
       }

@@ -57,7 +57,6 @@ class ReviewForm extends Form {
 
   doSubmit = async () => {
     try {
-      console.log(this.state);
       const { id: currentUserId } = authService.getCurrentUser();
       const review = {
         rating: this.state.rating,
@@ -69,6 +68,10 @@ class ReviewForm extends Form {
       toast.success("Review successfully added.");
       this.props.history.push("/companies/" + this.state.companyId);
     } catch (ex) {
+      if (ex && ex.message === "tokenExpiredException") {
+        alert("Session has expired.");
+        this.props.history.push("/logout");
+      }
       if (ex.response && ex.response.status === 400) {
         toast.error("An error has ocurred.");
       }
