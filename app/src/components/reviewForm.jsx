@@ -5,20 +5,14 @@ import reviewService from "../services/reviewService";
 import authService from "../services/authService";
 import companyService from "../services/companyService";
 import { toast } from "react-toastify";
+import StartRatingForm from "./common/starRatingForm";
 
 class ReviewForm extends Form {
   state = {
     data: { comment: "" },
     companyId: 0,
-    rating: 1,
-    errors: {},
-    stars: {
-      one: "fa fa-star-o checked",
-      two: "fa fa-star-o checked",
-      three: "fa fa-star-o checked",
-      four: "fa fa-star-o checked",
-      five: "fa fa-star-o checked"
-    }
+    rating: 5,
+    errors: {}
   };
 
   schema = {
@@ -39,20 +33,9 @@ class ReviewForm extends Form {
     }
   }
 
-  onOver = rating => {
-    const on = "fa fa-star checked";
-    const off = "fa fa-star-o checked";
-    const starsNumbers = ["one", "two", "three", "four", "five"];
-    const stars = { ...this.state.stars };
-    for (let i = 0; i < starsNumbers.length; i++) {
-      if (rating <= i) {
-        stars[starsNumbers[i]] = off;
-      } else {
-        stars[starsNumbers[i]] = on;
-      }
-    }
-
-    this.setState({ stars, rating });
+  handleRatingChange = rating => {
+    console.log(rating);
+    this.setState({ rating });
   };
 
   doSubmit = async () => {
@@ -87,28 +70,11 @@ class ReviewForm extends Form {
             <div>
               <label>Rating</label>
             </div>
-            <span
-              className={this.state.stars.one}
-              onMouseOver={() => this.onOver(1)}
-            />
-            <span
-              className={this.state.stars.two}
-              onMouseOver={() => this.onOver(2)}
-            />
-            <span
-              className={this.state.stars.three}
-              onMouseOver={() => this.onOver(3)}
-            />
-            <span
-              className={this.state.stars.four}
-              onMouseOver={() => this.onOver(4)}
-            />
-            <span
-              className={this.state.stars.five}
-              onMouseOver={() => this.onOver(5)}
-            />
+            <StartRatingForm onRatingChange={this.handleRatingChange} />
           </div>
           {this.renderInput("comment", "Comment")}
+          <div />
+          <br />
           {this.renderButton("Save")}
         </form>
       </div>
