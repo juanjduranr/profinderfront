@@ -10,11 +10,11 @@ export function getReviewsByCompany(companyId) {
 }
 
 export function addReview(review, config) {
-  return http.post(apiUrl + "api/reviews", review, config);
+  return http.post(apiUrl + apiEndpoint(review.companyId), review, config);
 }
 
-export function deleteReview(id, config) {
-  return http.delete(apiUrl + "api/reviews/" + id, config);
+export function deleteReview(companyId, reviewId, config) {
+  return http.delete(apiUrl + apiEndpoint(companyId) + "/" + reviewId, config);
 }
 
 export default {

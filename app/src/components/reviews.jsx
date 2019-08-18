@@ -38,8 +38,9 @@ class Reviews extends Component {
     this.setState({ reviews });
 
     try {
+      console.log(review);
       const config = authService.getAuthHeader();
-      await reviewService.deleteReview(review.id, config);
+      await reviewService.deleteReview(review.companyId, review.id, config);
       this.props.onChange();
     } catch (ex) {
       if (ex && ex.message === "tokenExpiredException") {
