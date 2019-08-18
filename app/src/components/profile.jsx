@@ -9,8 +9,8 @@ import ModalMessage from "./common/modalMessage";
 class Profile extends Form {
   state = {
     data: { name: "", lastName: "", email: "" },
-    errors: {},
-    showModal: false
+    showModal: false,
+    errors: {}
   };
 
   schema = {
@@ -61,6 +61,9 @@ class Profile extends Form {
       await userService.updateProfile(authService.getJwt(), profile);
       toast.success("Profile successfully updated.");
     } catch (ex) {
+      if (ex && ex.message === "tokenExpiredException") {
+        this.handleOpen();
+      }
       if (ex.response && ex.response.status === 400) {
         toast.error("An error has ocurred.");
       }
@@ -79,8 +82,7 @@ class Profile extends Form {
         </form>
         <ModalMessage
           message="Session has expired"
-          show={this.state.showModal}
-          onOpen={this.handleOpen}
+          showModal={this.state.showModal}
           onClose={this.handleClose}
         />
       </div>

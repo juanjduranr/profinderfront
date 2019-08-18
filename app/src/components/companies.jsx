@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { paginate } from "../utils/paginate";
-import { getCompanies } from "../services/companyService";
-import { getCompanyTypes } from "../services/companyTypeService";
+import companyService from "../services/companyService";
+import companyTypeService from "../services/companyTypeService";
 import Pagination from "./common/pagination";
 import SearchBox from "./common/searchBox";
 import ListGroup from "./common/listGroup";
@@ -18,8 +18,10 @@ class Companies extends Component {
   };
 
   async componentDidMount() {
-    const { data: companies } = await getCompanies();
-    const { data: companyTypesData } = await getCompanyTypes();
+    const { data: companies } = await companyService.getCompanies();
+    const {
+      data: companyTypesData
+    } = await companyTypeService.getCompanyTypes();
     const companyTypes = [{ id: 0, name: "All" }, ...companyTypesData];
 
     this.setState({ companies, companyTypes });

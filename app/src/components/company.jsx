@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import StarRating from "./common/starRating";
-import { getCompany } from "../services/companyService";
+import companyService from "../services/companyService";
 import CompanyDetail from "./companyDetail";
 import Reviews from "./reviews";
 
@@ -15,7 +15,7 @@ class Company extends Component {
   async getCompany() {
     try {
       const companyId = this.props.location.pathname.split("/")[2];
-      const { data: company } = await getCompany(companyId);
+      const { data: company } = await companyService.getCompany(companyId);
       this.setState({ company });
     } catch (ex) {
       if (ex.response && ex.response.status === 404)
@@ -29,6 +29,10 @@ class Company extends Component {
 
   handleReviewChange = async () => {
     await this.getCompany();
+  };
+
+  handleLogout = () => {
+    this.props.history.push("/logout");
   };
 
   changeView = () => {
@@ -101,6 +105,7 @@ class Company extends Component {
             isActive={this.state.isReviewsActive}
             company={this.state.company}
             onChange={this.handleReviewChange}
+            onLogout={this.handleLogout}
           />
           <input
             type="button"

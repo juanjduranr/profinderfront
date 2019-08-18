@@ -6,3 +6,7 @@ const apiEndpoint = "api/companyTypes";
 export function getCompanyTypes() {
   return http.get(apiUrl + apiEndpoint);
 }
+
+export default {
+  getCompanyTypes
+};

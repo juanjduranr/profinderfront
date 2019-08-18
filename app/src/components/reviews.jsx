@@ -5,17 +5,28 @@ import { paginate } from "../utils/paginate";
 import reviewService from "../services/reviewService";
 import authService from "../services/authService";
 import { toast } from "react-toastify";
+import ModalMessage from "./common/modalMessage";
 
 class Reviews extends Component {
   state = {
     reviews: [],
     currentPage: 1,
-    pageSize: 3
+    pageSize: 3,
+    showModal: false
   };
 
   async componentDidMount() {
     this.setState({ reviews: this.props.company.reviews });
   }
+
+  handleOpen = () => {
+    this.setState({ showModal: true });
+  };
+
+  handleClose = () => {
+    this.setState({ showModal: false });
+    this.props.onLogout();
+  };
 
   handlePageChange = page => {
     this.setState({ currentPage: page });
@@ -32,8 +43,7 @@ class Reviews extends Component {
       this.props.onChange();
     } catch (ex) {
       if (ex && ex.message === "tokenExpiredException") {
-        alert("Session has expired.");
-        this.props.history.push("/logout");
+        this.handleOpen();
       }
 
       if (ex.response && ex.response.status === 404)
@@ -64,6 +74,11 @@ class Reviews extends Component {
             pageSize={pageSize}
             currentPage={currentPage}
             onPageChange={this.handlePageChange}
+          />
+          <ModalMessage
+            message="Session has expired"
+            showModal={this.state.showModal}
+            onClose={this.handleClose}
           />
         </React.Fragment>
       );

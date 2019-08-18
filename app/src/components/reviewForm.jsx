@@ -6,12 +6,14 @@ import authService from "../services/authService";
 import companyService from "../services/companyService";
 import { toast } from "react-toastify";
 import StartRatingForm from "./common/starRatingForm";
+import ModalMessage from "./common/modalMessage";
 
 class ReviewForm extends Form {
   state = {
     data: { comment: "" },
     companyId: 0,
     rating: 5,
+    showModal: false,
     errors: {}
   };
 
@@ -33,12 +35,20 @@ class ReviewForm extends Form {
     }
   }
 
+  handleOpen = () => {
+    this.setState({ showModal: true });
+  };
+
+  handleClose = () => {
+    this.setState({ showModal: false });
+    this.props.history.push("/logout");
+  };
+
   handleGoBack = () => {
     this.props.history.goBack();
   };
 
   handleRatingChange = rating => {
-    console.log(rating);
     this.setState({ rating });
   };
 
@@ -56,8 +66,7 @@ class ReviewForm extends Form {
       this.props.history.push("/companies/" + this.state.companyId);
     } catch (ex) {
       if (ex && ex.message === "tokenExpiredException") {
-        alert("Session has expired.");
-        this.props.history.push("/logout");
+        this.handleOpen();
       }
       if (ex.response && ex.response.status === 400) {
         toast.error("An error has ocurred.");
@@ -86,6 +95,11 @@ class ReviewForm extends Form {
           />
           {this.renderButton("Save")}
         </form>
+        <ModalMessage
+          message="Session has expired"
+          showModal={this.state.showModal}
+          onClose={this.handleClose}
+        />
       </div>
     );
   }
