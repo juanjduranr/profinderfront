@@ -51,13 +51,7 @@ class Profile extends Form {
   doSubmit = async () => {
     try {
       const { id: currentUserId } = authService.getCurrentUser();
-      const { data } = this.state;
-      const profile = {
-        name: data.name,
-        lastName: data.lastName,
-        email: data.email,
-        externalId: currentUserId
-      };
+      const profile = { ...this.state.data, externalId: currentUserId };
       await userService.updateProfile(authService.getJwt(), profile);
       toast.success("Profile successfully updated.");
     } catch (ex) {
