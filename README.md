@@ -1,68 +1,71 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Pro Finder Front
 
-## Available Scripts
+Pro Finder Front es una aplicación web desarrollada en React.
 
-In the project directory, you can run:
+La aplicación fue creada utilizando el comando [Create React App](https://github.com/facebook/create-react-app).
 
-### `npm start`
+El objetivo del proyecto es implementar un sistema de ejemplo utilizando tecnologías actuales y buenas prácticas del desarrollo de software.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Requisitos
 
-### `npm test`
+Para poder ejecutar el proyecto necesitas:
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Visual Studio Code actualizado a la última versión.
+- npm actualizado a la última versión.
+- Instalar y ejecutar Pro Finder Back [ProFinderBack](https://github.com/juanjduranr/profinderback)
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Instalación
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+Para poder descargar el proyecto y ejecutarlo debes seguir los siguientes pasos:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1) Clonar el repositorio con el siguiente comando:
+	```
+	git clone https://github.com/juanjduranr/profinderfront.git
+	```
+2) Abrir el directorio "profinderapp" con Visual Studio Code
 
-### `npm run eject`
+3) Instalar los paquetes ejecutando el siguiente comando:
+	```
+	npm install
+	```
+	
+4) Para iniciar el proyecto debes ejecutar el siguiente comando (para el correcto funcionamiento la aplicación de ejecutarse en el puerto 3000):
+	```
+	npm start
+	```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Arquitectura
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+El sistema está compuesto por dos proyectos:
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+1) Pro Finder Back (RESTful API)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+2) Pro Finder Front (react app)
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Tecnologías utilizadas
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- react (16.8)
+- react-dom (16.8)
+- react-router (5.0)
+- react-router-dom (5.0)
+- react-toastify (5.3)
+- axios (0.18)
+- bootstrap (4.3)
+- react-bootstrap (1.0 beta)
+- font-awesome (4.7)
+- joi-browser (13.4)
+- jwt-decode (2.2)
+- lodash (4.17)
 
-### Code Splitting
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## Capturas de la aplicación 
 
-### Analyzing the Bundle Size
+![alt text](http://i.imgur.com/HQbGLlB.jpg)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
 
-### Making a Progressive Web App
+## Autor
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Juan José Durán Rodríguez
