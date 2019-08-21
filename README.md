@@ -37,10 +37,10 @@ Para poder descargar el proyecto y ejecutarlo debes seguir los siguientes pasos:
 	```
 5) Al iniciar el proyecto es necesario que se esté ejecutando el proyecto Pro Finder Back, el cual contiene toda la información que muestra la aplicación.
 
-Para iniciar sesion se puede utilizar los siguientes datos:
+	Para iniciar sesion se puede utilizar los siguientes datos:
 
--Username: user
--Password: password
+	-Username: user
+	-Password: password
 
 ## Arquitectura
 
