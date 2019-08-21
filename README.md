@@ -39,8 +39,8 @@ Para poder descargar el proyecto y ejecutarlo debes seguir los siguientes pasos:
 
 	Para iniciar sesion se puede utilizar los siguientes datos:
 
-	-Username: user
-	-Password: password
+	- Username: user
+	- Password: password
 
 ## Arquitectura
 
