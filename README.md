@@ -31,7 +31,7 @@ Para poder descargar el proyecto y ejecutarlo debes seguir los siguientes pasos:
 	npm install
 	```
 	
-4) Para iniciar el proyecto debes ejecutar el siguiente comando (para el correcto funcionamiento la aplicación de ejecutarse en el puerto 3000):
+4) Para iniciar el proyecto debes ejecutar el siguiente comando (para el correcto funcionamiento la aplicación debe ejecutarse en el puerto 3000):
 	```
 	npm start
 	```
